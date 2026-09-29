@@ -6,6 +6,11 @@ import { HomeScreen } from '@/screens/HomeScreen';
 import { ReconScreen } from '@/screens/ReconScreen';
 import { PayloadScreen } from '@/screens/PayloadScreen';
 import { ExploitScreen } from '@/screens/ExploitScreen';
+import { CommandCenterScreen } from '@/screens/CommandCenterScreen';
+import { SocialEngineeringScreen } from '@/screens/SocialEngineeringScreen';
+import { AdaptiveFeedbackScreen } from '@/screens/AdaptiveFeedbackScreen';
+import { GhostPersistenceScreen } from '@/screens/GhostPersistenceScreen';
+import { CrossPlatformSyncScreen } from '@/screens/CrossPlatformSyncScreen';
 import { SettingsScreen } from '@/screens/SettingsScreen';
 import { SIMULATION_SPEEDS } from '@/utils/constants';
 import {
@@ -17,6 +22,11 @@ import {
   Settings,
   Menu,
   X,
+  Crosshair,
+  Users,
+  RefreshCw,
+  Ghost,
+  Share2,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
@@ -28,9 +38,14 @@ interface NavItem {
 
 const NAV_ITEMS: NavItem[] = [
   { id: 'home', label: 'Dashboard', icon: Home },
+  { id: 'command', label: 'Command Center', icon: Crosshair },
   { id: 'recon', label: 'Reconnaissance', icon: Radar },
   { id: 'payload', label: 'Payload', icon: Package },
   { id: 'exploit', label: 'Exploit Chain', icon: GitBranch },
+  { id: 'social', label: 'Social Engineering', icon: Users },
+  { id: 'adaptive', label: 'Adaptive Feedback', icon: RefreshCw },
+  { id: 'ghost', label: 'Ghost Persistence', icon: Ghost },
+  { id: 'sync', label: 'Cross-Platform Sync', icon: Share2 },
   { id: 'settings', label: 'Settings', icon: Settings },
 ];
 
@@ -49,12 +64,22 @@ function App() {
     switch (screen) {
       case 'home':
         return <HomeScreen onNavigate={handleNavigate} simulationMode={simulationMode} />;
+      case 'command':
+        return <CommandCenterScreen simSpeed={simSpeed} />;
       case 'recon':
         return <ReconScreen simSpeed={simSpeed} />;
       case 'payload':
         return <PayloadScreen speed={SIMULATION_SPEEDS[simSpeed]} />;
       case 'exploit':
         return <ExploitScreen simSpeed={simSpeed} />;
+      case 'social':
+        return <SocialEngineeringScreen />;
+      case 'adaptive':
+        return <AdaptiveFeedbackScreen simSpeed={simSpeed} />;
+      case 'ghost':
+        return <GhostPersistenceScreen simSpeed={simSpeed} />;
+      case 'sync':
+        return <CrossPlatformSyncScreen simSpeed={simSpeed} />;
       case 'settings':
         return (
           <SettingsScreen
@@ -163,7 +188,7 @@ function App() {
 
         <footer className="border-t border-cyber-border px-4 py-3 text-center">
           <p className="text-xs font-mono text-cyber-muted">
-            CyberSentinel v1.0.0 — Educational Security Research Tool — No Real Exploits Performed
+            CyberSentinel v2.0.0 — Advanced Threat Lifecycle Simulator — Educational Security Research Tool
           </p>
         </footer>
       </div>

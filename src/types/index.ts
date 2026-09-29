@@ -58,4 +58,94 @@ export interface MemoryBlock {
   filled: boolean;
 }
 
-export type ScreenId = 'home' | 'recon' | 'payload' | 'exploit' | 'settings';
+export type ScreenId =
+  | 'home'
+  | 'recon'
+  | 'payload'
+  | 'exploit'
+  | 'command'
+  | 'social'
+  | 'adaptive'
+  | 'ghost'
+  | 'sync'
+  | 'settings';
+
+export type CampaignPhase = 'IDLE' | 'INTELLIGENCE' | 'TARGETING' | 'DELIVERY' | 'EXECUTION' | 'PERSISTENCE' | 'COMPLETE';
+
+export interface TargetProfile {
+  id: string;
+  handle: string;
+  networkProfile: string;
+  osLayer: string;
+  patchLevel: string;
+  kernelBuild: string;
+  appLayer: string;
+  libVersions: string;
+  cpuArch: string;
+  gpuModel: string;
+  deviceFamily: string;
+  isp: string;
+  vpnStatus: string;
+  securityPosture: string;
+}
+
+export interface ReconPipelineStep {
+  id: string;
+  label: string;
+  status: 'pending' | 'active' | 'complete';
+}
+
+export interface LureConfig {
+  context: string;
+  timing: string;
+  messageTemplate: string;
+  channel: string;
+  effectiveness: number;
+}
+
+export interface CrashSignature {
+  id: string;
+  errorCode: string;
+  description: string;
+  payloadVariant: string;
+  resolved: boolean;
+}
+
+export interface AdaptiveIteration {
+  iteration: number;
+  crashSignature: CrashSignature | null;
+  payloadAdjustment: string;
+  result: 'crash' | 'partial' | 'success';
+}
+
+export interface StealthMetric {
+  label: string;
+  value: number;
+  max: number;
+  unit: string;
+}
+
+export interface PersistenceTechnique {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  noiseLevel: 'low' | 'medium' | 'high';
+  detected: boolean;
+  active: boolean;
+}
+
+export interface SyncedDevice {
+  id: string;
+  name: string;
+  type: 'phone' | 'laptop' | 'cloud' | 'tablet';
+  status: 'offline' | 'syncing' | 'synced' | 'compromised';
+  lastSync: string;
+  dataSize: string;
+}
+
+export interface RiskFactor {
+  label: string;
+  value: number;
+  color: 'green' | 'amber' | 'red';
+}
